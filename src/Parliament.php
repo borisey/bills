@@ -21,17 +21,7 @@ class Parliament
     }
 
     public function getBills() {
-        ob_start();
-
-        $config = array(
-            "token"     => $this->token,
-            "app_token" => $this->appToken,
-            "status" => "1",
-            "page" => 1,
-        );
-
-        $url = "http://api.duma.gov.ru/api/$config[token]/search.json?app_token=$config[app_token]&status=$config[status]&page=$config[page]";
-
+        $url = $this->getRequestUrl(null, 1, 1);
         $get_bills = file_get_contents($url);
 
         return json_decode($get_bills,true);
