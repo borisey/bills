@@ -1,5 +1,5 @@
 {
-  "name": "borisey/bill",
+  "name": "borisey/bills",
   "description": "A short description of what your package does",
   "require": {
     "php": ">=7.4"
