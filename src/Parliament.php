@@ -17,17 +17,17 @@ class Parliament
 
     public function getBills() {
         $url = $this->getRequestUrl(null, 1, 1);
-        $get_bills = file_get_contents($url);
+        $content = $this->getContents($url);
 
-        return json_decode($get_bills,true);
+        return json_decode($content,true);
     }
 
     public function getBill($lawNumber)
     {
-        $url_bills = $this->getRequestUrl($lawNumber, 1, 1);
-        $get_bills = file_get_contents($url_bills);
+        $url = $this->getRequestUrl($lawNumber, 1, 1);
+        $content = $this->getContents($url);
 
-        return json_decode($get_bills,true);
+        return json_decode($content,true);
     }
 
     private function getRequestUrl($lawNumber = null, $searchMode, $stage)
@@ -37,5 +37,10 @@ class Parliament
             . (isset($lawNumber) ? "&number=" . $lawNumber : '')
             . '&search_mode=' . $searchMode
             . '&stage=' . $stage;
+    }
+
+    private function getContents($url)
+    {
+        return file_get_contents($url);
     }
 }
