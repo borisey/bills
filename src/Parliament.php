@@ -15,11 +15,6 @@ class Parliament
         return $this;
     }
 
-    public function showData()
-    {
-        return 123;
-    }
-
     public function getBills() {
         $url = $this->getRequestUrl(null, 1, 1);
         $get_bills = file_get_contents($url);
@@ -27,16 +22,13 @@ class Parliament
         return json_decode($get_bills,true);
     }
 
-
     public function getBill($lawNumber)
     {
-
         $url_bills = $this->getRequestUrl($lawNumber, 1, 1);
         $get_bills = file_get_contents($url_bills);
 
         return json_decode($get_bills,true);
     }
-
 
     private function getRequestUrl($lawNumber = null, $searchMode, $stage)
     {
