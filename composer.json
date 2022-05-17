@@ -1,5 +1,5 @@
 {
-  "name": "borisey/russian-parliament-bill",
+  "name": "borisey/russian-parliament-api",
   "description": "A short description of what your package does",
   "require": {
     "php": ">=7.4"
