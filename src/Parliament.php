@@ -6,6 +6,7 @@ class Parliament
 {
     public $token;
     public $appToken;
+    public $billService;
 
     public function setAccessTokens($token, $appToken): Parliament
     {
