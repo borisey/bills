@@ -2,11 +2,20 @@
 
 namespace Borisey\RussianParliamentApi;
 
+use \Borisey\RussianParliamentApi\Topic;
+
 class Parliament
 {
     public $token;
     public $appToken;
     public $billService;
+
+    public $topic;
+
+    public function __construct()
+    {
+        $this->topic = new Topic;
+    }
 
     public function setAccessTokens($token, $appToken): Parliament
     {
@@ -14,6 +23,11 @@ class Parliament
         $this->appToken = $appToken;
 
         return $this;
+    }
+
+    public function getTopics()
+    {
+        return $this->topic->getTopics($this);
     }
 
     public function getBills() {
@@ -31,7 +45,7 @@ class Parliament
         return json_decode($content,true);
     }
 
-    private function getRequestUrl($lawNumber = null, $searchMode, $stage)
+    protected function getRequestUrl($lawNumber = null, $searchMode, $stage)
     {
         return 'http://api.duma.gov.ru/api/' . $this->token
             . '/search.json?app_token=' . $this->appToken
@@ -40,7 +54,7 @@ class Parliament
             . '&stage=' . $stage;
     }
 
-    private function getContents($url)
+    protected function getContents($url)
     {
         return file_get_contents($url);
     }
