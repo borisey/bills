@@ -28,6 +28,7 @@ class Parliament
     public function getTopics()
     {
         return $this->topic->getTopics($this);
+
     }
 
     public function getBills($lawNumber = null, $searchMode, $stage, $page = 1) {
