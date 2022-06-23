@@ -27,8 +27,7 @@ class Parliament
 
     public function getTopics()
     {
-        return $this->topic->getTopics($this);
-    }
+        return $this->topic->getTopics($this);}
 
     public function getBills($lawNumber = null, $searchMode, $stage, $page = 1) {
         $url = $this->getRequestUrl($lawNumber, $searchMode, $stage, $page);
