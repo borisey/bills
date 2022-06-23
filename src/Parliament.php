@@ -28,11 +28,10 @@ class Parliament
     public function getTopics()
     {
         return $this->topic->getTopics($this);
-
     }
 
-    public function getBills($lawNumber = null, $searchMode, $stage, $page = 1) {
-        $url = $this->getRequestUrl($lawNumber, $searchMode, $stage, $page);
+    public function getBills($lawNumber = null, $searchMode, $stage, $status, $page = 1) {
+        $url = $this->getRequestUrl($lawNumber, $searchMode, $stage, $status, $page);
         $content = $this->getContents($url);
 
         return json_decode($content,true);
@@ -46,12 +45,14 @@ class Parliament
         return json_decode($content,true);
     }
 
-    protected function getRequestUrl($lawNumber = null, $searchMode, $stage, $page = 1)
+    protected function getRequestUrl($lawNumber = null, $searchMode, $stage, $status = null, $page = 1)
     {
         return 'http://api.duma.gov.ru/api/' . $this->token
             . '/search.json?app_token=' . $this->appToken
             . (isset($lawNumber) ? "&number=" . $lawNumber : '')
+            . (isset($status) ? "&status=" . $status : '')
             . '&search_mode=' . $searchMode
+            . '&status=' . $status
             . '&stage=' . $stage
             . '&page=' . $page;
     }
