@@ -2,7 +2,7 @@
 
 namespace Borisey\RussianParliamentApi;
 
-use \Borisey\RussianParliamentApi\Topic;
+use \Borisey\RussianParliamentApi\{Topic, Deputy};
 
 class Parliament
 {
@@ -11,10 +11,12 @@ class Parliament
     public $billService;
 
     public $topic;
+    public $deputy;
 
     public function __construct()
     {
-        $this->topic = new Topic;
+        $this->topic  = new Topic;
+        $this->deputy = new Deputy;
     }
 
     public function setAccessTokens($token, $appToken): Parliament
@@ -23,6 +25,11 @@ class Parliament
         $this->appToken = $appToken;
 
         return $this;
+    }
+
+    public function getDeputies()
+    {
+        return $this->deputy->getDeputies($this);
     }
 
     public function getTopics()
