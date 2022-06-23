@@ -1,0 +1,12 @@
+{
+  "name": "borisey/russian-parliament-api",
+  "description": "A short description of what your package does",
+  "require": {
+    "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Borisey\\RussianParliamentApi\\": "src/"
+    }
+  }
+}
