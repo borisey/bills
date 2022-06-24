@@ -6,7 +6,7 @@ class RegionalOrgans extends BaseRequest
 {
     const TYPE = 'regional-organs';
 
-    public function getFederalOrgans($parliament) {
+    public function getRegionalOrgans($parliament) {
         $url = $this->getRequestUrl($parliament, self::TYPE);
         $content = $this->getContents($url);
 
