@@ -2,7 +2,7 @@
 
 namespace Borisey\RussianParliamentApi;
 
-use \Borisey\RussianParliamentApi\{Topic, Deputy, FederalOrgans, RegionalOrgans, Committee};
+use \Borisey\RussianParliamentApi\{Topic, Deputy, FederalOrgans, RegionalOrgans, Committee, Stage, Instance};
 
 class Parliament
 {
@@ -23,6 +23,8 @@ class Parliament
         $this->federalOrgans  = new FederalOrgans;
         $this->regionalOrgans = new RegionalOrgans;
         $this->committee      = new Committee;
+        $this->stage          = new Stage;
+        $this->instance       = new Instance;
     }
 
     public function setAccessTokens($token, $appToken): Parliament
@@ -31,6 +33,16 @@ class Parliament
         $this->appToken = $appToken;
 
         return $this;
+    }
+
+    public function getStages()
+    {
+        return $this->stage->getStages($this);
+    }
+
+    public function getInstances()
+    {
+        return $this->instance->getInstances($this);
     }
 
     public function getCommittees()
