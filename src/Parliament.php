@@ -2,7 +2,16 @@
 
 namespace Borisey\RussianParliamentApi;
 
-use \Borisey\RussianParliamentApi\{Topic, Deputy, FederalOrgans, RegionalOrgans, Committee, Stage, Instance};
+use \Borisey\RussianParliamentApi\{
+    Topic,
+    Deputy,
+    FederalOrgans,
+    RegionalOrgans,
+    Committee,
+    Stage,
+    Instance,
+    Question
+};
 
 class Parliament
 {
@@ -15,6 +24,9 @@ class Parliament
     public $federalOrgans;
     public $regionalOrgans;
     public $committee;
+    public $stage;
+    public $instance;
+    public $question;
 
     public function __construct()
     {
@@ -25,6 +37,7 @@ class Parliament
         $this->committee      = new Committee;
         $this->stage          = new Stage;
         $this->instance       = new Instance;
+        $this->question       = new Question;
     }
 
     public function setAccessTokens($token, $appToken): Parliament
@@ -33,6 +46,11 @@ class Parliament
         $this->appToken = $appToken;
 
         return $this;
+    }
+
+    public function getQuestions()
+    {
+        return $this->question->getQuestions($this);
     }
 
     public function getStages()
@@ -85,15 +103,14 @@ class Parliament
         return json_decode($content,true);
     }
 
-    protected function getRequestUrl($lawNumber = null, $searchMode, $stage, $status = null, $page = 1)
+    protected function getRequestUrl($lawNumber = null, $searchMode, $stage = null, $status = null, $page = 1)
     {
         return 'http://api.duma.gov.ru/api/' . $this->token
             . '/search.json?app_token=' . $this->appToken
             . (isset($lawNumber) ? "&number=" . $lawNumber : '')
-            . (isset($status) ? "&status=" . $status : '')
             . '&search_mode=' . $searchMode
-            . '&status=' . $status
-            . '&stage=' . $stage
+            . (isset($status) ? "&status=" . $status : '')
+            . (isset($stage) ? "&stage=" . $stage : '')
             . '&page=' . $page;
     }
 
