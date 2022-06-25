@@ -48,9 +48,9 @@ class Parliament
         return $this;
     }
 
-    public function getQuestions()
+    public function getQuestions($page = 1)
     {
-        return $this->question->getQuestions($this);
+        return $this->question->getQuestions($this, $page);
     }
 
     public function getStages()
