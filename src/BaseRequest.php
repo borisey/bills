@@ -26,6 +26,12 @@ class BaseRequest
             . "/{$type}/{$billNumber}.json?app_token=" . $parliament->appToken;
     }
 
+    protected function getDeputyRequestUrl($parliament, $type, $deputyId) {
+        return 'http://api.duma.gov.ru/api/' . $parliament->token
+            . "/{$type}.json?app_token=" . $parliament->appToken
+            . "&id=" . $deputyId;
+    }
+
     protected function getContents($url)
     {
         return file_get_contents($url);

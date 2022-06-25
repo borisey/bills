@@ -81,6 +81,11 @@ class Parliament
         return $this->deputy->getDeputies($this);
     }
 
+    public function getDeputy($deputyId)
+    {
+        return $this->deputy->getDeputy($this, $deputyId);
+    }
+
     public function getTopics()
     {
         return $this->topic->getTopics($this);
