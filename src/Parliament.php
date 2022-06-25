@@ -10,7 +10,8 @@ use \Borisey\RussianParliamentApi\{
     Committee,
     Stage,
     Instance,
-    Question
+    Question,
+    Transcript
 };
 
 class Parliament
@@ -27,6 +28,7 @@ class Parliament
     public $stage;
     public $instance;
     public $question;
+    public $transcript;
 
     public function __construct()
     {
@@ -38,6 +40,7 @@ class Parliament
         $this->stage          = new Stage;
         $this->instance       = new Instance;
         $this->question       = new Question;
+        $this->transcript     = new Transcript;
     }
 
     public function setAccessTokens($token, $appToken): Parliament
@@ -51,6 +54,11 @@ class Parliament
     public function getQuestions($page = 1)
     {
         return $this->question->getQuestions($this, $page);
+    }
+
+    public function getTranscript($billNumber)
+    {
+        return $this->transcript->getTranscript($this, $billNumber);
     }
 
     public function getStages()
