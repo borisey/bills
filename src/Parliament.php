@@ -59,9 +59,9 @@ class Parliament
         return $this->question->getQuestions($this, $page);
     }
 
-    public function getTranscript($billNumber)
+    public function getTranscriptBill($billNumber)
     {
-        return $this->transcript->getTranscript($this, $billNumber);
+        return $this->transcript->getTranscriptBill($this, $billNumber);
     }
 
     public function getStages()
