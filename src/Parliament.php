@@ -64,6 +64,16 @@ class Parliament
         return $this->transcript->getTranscriptBill($this, $billNumber);
     }
 
+    public function getTranscriptResolution($resolutionNumber)
+    {
+        return $this->transcript->getTranscriptResolution($this, $resolutionNumber);
+    }
+
+    public function getTranscriptDate($date)
+    {
+        return $this->transcript->getTranscriptDate($this, $date);
+    }
+
     public function getStages()
     {
         return $this->stage->getStages($this);
