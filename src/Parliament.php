@@ -11,7 +11,8 @@ use \Borisey\RussianParliamentApi\{
     Stage,
     Instance,
     Question,
-    Transcript
+    Transcript,
+    Periods
 };
 
 class Parliament
@@ -29,6 +30,7 @@ class Parliament
     public $instance;
     public $question;
     public $transcript;
+    public $period;
 
     public function __construct()
     {
@@ -41,6 +43,7 @@ class Parliament
         $this->instance       = new Instance;
         $this->question       = new Question;
         $this->transcript     = new Transcript;
+        $this->period         = new Period;
     }
 
     public function setAccessTokens($token, $appToken): Parliament
@@ -84,6 +87,11 @@ class Parliament
     public function getDeputy($deputyId)
     {
         return $this->deputy->getDeputy($this, $deputyId);
+    }
+
+    public function getPeriods()
+    {
+        return $this->period->getPeriods($this);
     }
 
     public function getTopics()
