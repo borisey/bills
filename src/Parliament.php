@@ -74,6 +74,11 @@ class Parliament
         return $this->transcript->getTranscriptDate($this, $date);
     }
 
+    public function getTranscriptQuestion($kodz, $kodvopr)
+    {
+        return $this->transcript->getTranscriptQuestion($this, $kodz, $kodvopr);
+    }
+
     public function getStages()
     {
         return $this->stage->getStages($this);

@@ -8,6 +8,7 @@ class Transcript extends BaseRequest
         'bill'       => 'transcript',
         'resolution' => 'transcriptResolution',
         'date'       => 'transcriptFull',
+        'question'   => 'transcriptQuestion',
     ];
 
     public function getTranscriptBill($parliament, $billNumber) {
@@ -26,6 +27,13 @@ class Transcript extends BaseRequest
 
     public function getTranscriptDate($parliament, $date) {
         $url = $this->getTransctiptRequestUrl($parliament, self::TYPE['date'], $date);
+        $content = $this->getContents($url);
+
+        return json_decode($content,true);
+    }
+
+    public function getTranscriptQuestion($parliament, $kodz, $kodvopr) {
+        $url = $this->getTransctiptRequestUrl($parliament, self::TYPE['question'], $kodz, $kodvopr);
         $content = $this->getContents($url);
 
         return json_decode($content,true);

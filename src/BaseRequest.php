@@ -21,9 +21,11 @@ class BaseRequest
             . (($page) ? '&page=' . $page : '');
     }
 
-    protected function getTransctiptRequestUrl($parliament, $type, $billNumber) {
+    protected function getTransctiptRequestUrl($parliament, $type, $number, $kodvopr = false) {
         return 'http://api.duma.gov.ru/api/' . $parliament->token
-            . "/{$type}/{$billNumber}.json?app_token=" . $parliament->appToken;
+            . "/{$type}/{$number}"
+            . (($kodvopr) ? '/' . $kodvopr : '')
+            . ".json?app_token=" . $parliament->appToken;
     }
 
     protected function getDeputyRequestUrl($parliament, $type, $deputyId) {
