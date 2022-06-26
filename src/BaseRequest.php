@@ -28,6 +28,26 @@ class BaseRequest
             . ".json?app_token=" . $parliament->appToken;
     }
 
+    protected function getTransctiptRequestDeputyUrl(
+        $parliament,
+        $type,
+        $deputyNumber = false,
+        $dateFrom = false,
+        $dateTo = false,
+        $name = false,
+        $page = false,
+        $limit = false
+    ) {
+        return 'http://api.duma.gov.ru/api/' . $parliament->token
+            . "/{$type}/{$deputyNumber}"
+            . ".json?app_token=" . $parliament->appToken
+            . (($dateFrom) ? '&dateFrom=' . $dateFrom : '')
+            . (($dateTo) ? '&dateTo=' . $dateTo : '')
+            . (($name) ? '&name=' . $name : '')
+            . (($page) ? '&page=' . $page : '')
+            . (($limit) ? '&limit=' . $limit : '');
+    }
+
     protected function getDeputyRequestUrl($parliament, $type, $deputyId) {
         return 'http://api.duma.gov.ru/api/' . $parliament->token
             . "/{$type}.json?app_token=" . $parliament->appToken

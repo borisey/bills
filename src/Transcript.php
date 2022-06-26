@@ -40,8 +40,25 @@ class Transcript extends BaseRequest
         return json_decode($content,true);
     }
 
-    public function getTranscriptDeputy($parliament, $deputy) {
-        $url = $this->getTransctiptRequestUrl($parliament, self::TYPE['deputy'], $deputy);
+    public function getTranscriptDeputy(
+        $parliament,
+        $deputyNumber,
+        $dateFrom,
+        $dateTo,
+        $name,
+        $page,
+        $limit
+    ) {
+        $url = $this->getTransctiptRequestDeputyUrl(
+            $parliament,
+            self::TYPE['deputy'],
+            $deputyNumber,
+            $dateFrom,
+            $dateTo,
+            $name,
+            $page,
+            $limit
+        );
         $content = $this->getContents($url);
 
         return json_decode($content,true);
