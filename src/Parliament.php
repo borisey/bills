@@ -79,6 +79,11 @@ class Parliament
         return $this->transcript->getTranscriptQuestion($this, $kodz, $kodvopr);
     }
 
+    public function getTranscriptDeputy($deputyNumber)
+    {
+        return $this->transcript->getTranscriptDeputy($deputyNumber);
+    }
+
     public function getStages()
     {
         return $this->stage->getStages($this);
